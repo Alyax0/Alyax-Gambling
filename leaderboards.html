@@ -18,6 +18,16 @@ body {
     color: white;
 }
 
+/* PARTICULAS */
+#particles{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+z-index:-1;
+}
+
 /* HEADER */
 header {
     display: flex;
@@ -178,8 +188,10 @@ tr:hover {
 
 <body>
 
+<canvas id="particles"></canvas>
+
 <header>
-<div class="logo">ALYAX COMMUNITY</div>
+<div class="logo">DROPS CLUB</div>
 <nav>
 <a href="index.html">Home</a>
 <a href="leaderboards.html">Leaderboard</a>
@@ -257,6 +269,53 @@ tr:hover {
 </div>
 
 </div>
+
+<script>
+
+const canvas = document.getElementById("particles");
+const ctx = canvas.getContext("2d");
+
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+
+let particles=[];
+
+for(let i=0;i<80;i++){
+particles.push({
+x:Math.random()*canvas.width,
+y:Math.random()*canvas.height,
+size:Math.random()*2,
+speedY:Math.random()*0.5+0.2
+});
+}
+
+function animate(){
+
+ctx.clearRect(0,0,canvas.width,canvas.height);
+
+ctx.fillStyle="rgba(255,255,255,0.2)";
+
+particles.forEach(p=>{
+
+ctx.beginPath();
+ctx.arc(p.x,p.y,p.size,0,Math.PI*2);
+ctx.fill();
+
+p.y+=p.speedY;
+
+if(p.y>canvas.height){
+p.y=0;
+p.x=Math.random()*canvas.width;
+}
+
+});
+
+requestAnimationFrame(animate);
+}
+
+animate();
+
+</script>
 
 </body>
 </html>
