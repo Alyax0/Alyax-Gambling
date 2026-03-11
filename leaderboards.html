@@ -2,23 +2,26 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<title>Leaderboard</title>
+<title>Clash Leaderboard</title>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
 
 <style>
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
 }
 
-body {
-    font-family: 'Poppins', sans-serif;
-    background: #0d0d0f;
-    color: white;
+body{
+font-family:'Poppins',sans-serif;
+background:#0d0d0f;
+color:white;
+overflow-x:hidden;
 }
 
 /* PARTICULAS */
+
 #particles{
 position:fixed;
 top:0;
@@ -29,160 +32,304 @@ z-index:-1;
 }
 
 /* HEADER */
-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 25px 60px;
-    background: #111116;
-    border-bottom: 1px solid rgba(255,255,255,0.05);
+
+header{
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:25px 60px;
+background:#111116;
+border-bottom:1px solid rgba(255,255,255,0.05);
 }
 
-.logo {
-    font-weight: 800;
-    font-size: 20px;
+.logo{
+font-weight:800;
+font-size:20px;
 }
 
-nav a {
-    text-decoration: none;
-    color: #aaa;
-    margin-left: 25px;
-    font-weight: 600;
-    transition: 0.3s;
+nav a{
+text-decoration:none;
+color:#aaa;
+margin-left:25px;
+font-weight:600;
+transition:.3s;
 }
 
-nav a:hover {
-    color: #9146FF;
+nav a:hover{
+color:#9146FF;
 }
 
 /* MAIN */
-.container {
-    padding: 80px 20px;
-    text-align: center;
+
+.container{
+padding:80px 20px;
+text-align:center;
 }
 
-.title {
-    font-size: 40px;
-    font-weight: 800;
-    margin-bottom: 15px;
+.title{
+font-size:40px;
+font-weight:800;
+margin-bottom:15px;
 }
 
-.subtitle {
-    color: #888;
-    margin-bottom: 40px;
+.subtitle{
+color:#888;
+margin-bottom:40px;
 }
 
 /* PRIZE BOX */
-.prize-box {
-    background: linear-gradient(145deg,#15151c,#0f0f14);
-    padding: 30px;
-    border-radius: 20px;
-    max-width: 500px;
-    margin: 0 auto 60px auto;
-    box-shadow: 0 0 40px rgba(145,70,255,0.25);
+
+.prize-box{
+background:linear-gradient(145deg,#15151c,#0f0f14);
+padding:30px;
+border-radius:20px;
+max-width:500px;
+margin:0 auto 60px auto;
+box-shadow:0 0 40px rgba(145,70,255,0.25);
 }
 
-.prize-amount {
-    font-size: 30px;
-    font-weight: 800;
-    color: #9146FF;
+.prize-amount{
+font-size:30px;
+font-weight:800;
+color:#9146FF;
 }
 
-.timer {
-    margin-top: 10px;
-    color: #aaa;
+.timer{
+margin-top:10px;
+color:#aaa;
 }
 
 /* TOP 3 */
-.top3 {
-    display: flex;
-    justify-content: center;
-    gap: 30px;
-    margin-bottom: 70px;
+
+.top3{
+display:flex;
+justify-content:center;
+align-items:flex-end;
+gap:40px;
+margin-bottom:70px;
 }
 
-.card {
-    background: linear-gradient(145deg,#15151c,#0f0f14);
-    padding: 30px;
-    border-radius: 20px;
-    width: 200px;
-    box-shadow: 0 0 30px rgba(255,255,255,0.05);
-    transition: 0.3s;
+/* CARDS */
+
+.card{
+padding:25px;
+border-radius:20px;
+display:flex;
+flex-direction:column;
+align-items:center;
+justify-content:center;
+gap:12px;
+position:relative;
+text-align:center;
+transition:.25s;
 }
 
-.card:hover {
-    transform: translateY(-5px);
+.card:hover{
+transform:translateY(-6px) scale(1.02);
 }
 
-.first {
-    border: 2px solid gold;
+/* TOP 1 */
+
+.first{
+width:286px;
+height:383px;
+background:rgba(255,215,0,0.12);
+border:2px solid gold;
+
+box-shadow:
+0 0 35px rgba(255,215,0,0.35),
+0 0 70px rgba(255,215,0,0.15);
 }
 
-.second {
-    border: 2px solid silver;
+/* TOP 2 */
+
+.second{
+width:208px;
+height:275px;
+background:rgba(192,192,192,0.15);
+border:2px solid silver;
+
+box-shadow:
+0 0 20px rgba(192,192,192,0.2);
 }
 
-.third {
-    border: 2px solid #cd7f32;
+/* TOP 3 */
+
+.third{
+width:208px;
+height:275px;
+background:rgba(205,127,50,0.18);
+border:2px solid #cd7f32;
+
+box-shadow:
+0 0 20px rgba(205,127,50,0.2);
 }
 
-.rank {
-    font-size: 22px;
-    font-weight: 800;
-    margin-bottom: 10px;
+/* BADGE */
+
+.badge{
+position:absolute;
+top:-18px;
+left:50%;
+transform:translateX(-50%);
+width:40px;
+height:40px;
+border-radius:50%;
+display:flex;
+align-items:center;
+justify-content:center;
+font-weight:800;
+color:black;
 }
 
-.user {
-    font-weight: 600;
-    margin-bottom: 8px;
+.first .badge{background:gold;}
+.second .badge{background:silver;}
+.third .badge{background:#cd7f32;}
+
+/* AVATAR */
+
+.top-avatar{
+width:70px;
+height:70px;
+border-radius:50%;
+object-fit:cover;
+border:3px solid #b8b8b8;
 }
 
-.amount {
-    color: #9146FF;
-    font-weight: 700;
+.first .top-avatar{
+width:120px;
+height:120px;
+border:4px solid gold;
+box-shadow:0 0 15px rgba(255,215,0,0.45);
 }
 
-/* AVATAR TOP 3 */
-.top-avatar {
-    width: 70px;
-    height: 70px;
-    border-radius: 50%;
-    object-fit: cover;
-    margin: 10px 0;
-    border: 3px solid #9146FF;
+.second .top-avatar{
+border:3px solid #c9c9c9;
+}
+
+.third .top-avatar{
+border:3px solid #c9c9c9;
+}
+
+/* USER */
+
+.user{
+font-weight:600;
+font-size:16px;
+}
+
+/* GEM */
+
+.gem{
+width:16px;
+}
+
+/* AMOUNT */
+
+.amount{
+color:#9146FF;
+font-weight:700;
+display:flex;
+align-items:center;
+gap:6px;
+font-size:16px;
+}
+
+/* REWARD */
+
+.reward{
+margin-top:4px;
+padding:7px 16px;
+border-radius:10px;
+display:flex;
+align-items:center;
+gap:6px;
+font-weight:700;
+font-size:15px;
+border:1px solid rgba(255,255,255,0.2);
+background:rgba(0,0,0,0.25);
+}
+
+.first .reward{
+border:2px solid gold;
+color:gold;
+}
+
+.second .reward{
+border:2px solid silver;
+color:silver;
+}
+
+.third .reward{
+border:2px solid #cd7f32;
+color:#cd7f32;
 }
 
 /* TABLE */
-.table-box {
-    max-width: 900px;
-    margin: auto;
-    background: #15151c;
-    border-radius: 20px;
-    padding: 30px;
+
+.table-box{
+max-width:900px;
+margin:auto;
+background:#15151c;
+border-radius:20px;
+padding:30px;
+box-shadow:0 0 30px rgba(0,0,0,0.4);
 }
 
-table {
-    width: 100%;
-    border-collapse: collapse;
+table{
+width:100%;
+border-collapse:separate;
+border-spacing:0 10px;
 }
 
-th, td {
-    padding: 15px;
-    text-align: center;
+tr{
+transition:all .25s ease;
 }
 
-th {
-    color: #9146FF;
-    border-bottom: 1px solid rgba(255,255,255,0.1);
+td{
+padding:16px 20px;
+background:#121217;
+transition:all .25s ease;
 }
 
-tr {
-    border-bottom: 1px solid rgba(255,255,255,0.05);
+/* ESQUINAS REDONDEADAS */
+
+td:first-child{
+border-radius:12px 0 0 12px;
 }
 
-tr:hover {
-    background: rgba(145,70,255,0.05);
+td:last-child{
+border-radius:0 12px 12px 0;
 }
+
+/* HOVER */
+
+tr:hover td{
+background:rgba(255,170,0,0.08);
+}
+
+tr:hover{
+transform:translateY(-3px);
+filter:drop-shadow(0 8px 18px rgba(255,170,0,0.18));
+}
+/* REWARD BOX (CUADRITO) */
+
+.table-reward{
+padding:6px 14px;
+border-radius:8px;
+display:inline-flex;
+align-items:center;
+gap:6px;
+font-weight:700;
+
+background:rgba(255,170,0,0.12);
+border:2px solid rgba(255,170,0,0.6);
+
+color:#ffb347;
+
+box-shadow:0 0 10px rgba(255,170,0,0.2);
+}
+
 </style>
 </head>
 
@@ -191,10 +338,10 @@ tr:hover {
 <canvas id="particles"></canvas>
 
 <header>
-<div class="logo">DROPS CLUB</div>
+<div class="logo">ALYAX COMMUNITY</div>
 <nav>
 <a href="index.html">Home</a>
-<a href="leaderboards.html">Leaderboard</a>
+<a href="leaderboard.html">Leaderboard</a>
 </nav>
 </header>
 
@@ -211,70 +358,121 @@ tr:hover {
 <div class="top3">
 
 <div class="card second">
-<div class="rank">🥈 #2</div>
+<div class="badge">2</div>
 <img src="https://i.pravatar.cc/100?img=5" class="top-avatar">
 <div class="user">Tiempos</div>
-<div class="amount">$10,210</div>
+<div class="amount"><img src="gem.webp" class="gem">10,210</div>
+<div class="reward"><img src="gem.webp" class="gem">100</div>
 </div>
 
 <div class="card first">
-<div class="rank">🥇 #1</div>
+<div class="badge">1</div>
 <img src="https://i.pravatar.cc/100?img=12" class="top-avatar">
 <div class="user">LILGIO</div>
-<div class="amount">$12,540</div>
+<div class="amount"><img src="gem.webp" class="gem">12,540</div>
+<div class="reward"><img src="gem.webp" class="gem">250</div>
 </div>
 
 <div class="card third">
-<div class="rank">🥉 #3</div>
+<div class="badge">3</div>
 <img src="https://i.pravatar.cc/100?img=8" class="top-avatar">
 <div class="user">PlayerX</div>
-<div class="amount">$8,430</div>
+<div class="amount"><img src="gem.webp" class="gem">8,430</div>
+<div class="reward"><img src="gem.webp" class="gem">75</div>
 </div>
 
 </div>
 
 <div class="table-box">
+
 <table>
-<tr>
-<th>Rank</th>
-<th>Usuario</th>
-<th>Wagered</th>
-</tr>
 
 <tr>
-<td>4</td>
-<td>GamerPro</td>
-<td>$6,990</td>
+
+<td style="width:60px;color:#ffb347;font-weight:700;">#4</td>
+
+<td style="text-align:left;">
+GamerPro<br>
+<span style="font-size:13px;color:#8a8a95;">
+<img src="gem.webp" class="gem">6,990 wagered
+</span>
+</td>
+
+<td style="text-align:right;">
+<div class="table-reward">
+<img src="gem.webp" class="gem">50
+</div>
+</td>
+
 </tr>
 
-<tr>
-<td>5</td>
-<td>BetMaster</td>
-<td>$5,420</td>
-</tr>
 
 <tr>
-<td>6</td>
-<td>CryptoKid</td>
-<td>$4,200</td>
+
+<td style="width:60px;color:#ffb347;font-weight:700;">#5</td>
+
+<td style="text-align:left;">
+BetMaster<br>
+<span style="font-size:13px;color:#8a8a95;">
+<img src="gem.webp" class="gem">5,420 wagered
+</span>
+</td>
+
+<td style="text-align:right;">
+<div class="table-reward">
+<img src="gem.webp" class="gem">20
+</div>
+</td>
+
 </tr>
 
+
 <tr>
-<td>7</td>
-<td>SpinMaster</td>
-<td>$3,850</td>
+
+<td style="width:60px;color:#ffb347;font-weight:700;">#6</td>
+
+<td style="text-align:left;">
+CryptoKid<br>
+<span style="font-size:13px;color:#8a8a95;">
+<img src="gem.webp" class="gem">4,200 wagered
+</span>
+</td>
+
+<td style="text-align:right;">
+<div class="table-reward">
+<img src="gem.webp" class="gem">10
+</div>
+</td>
+
+</tr>
+
+
+<tr>
+
+<td style="width:60px;color:#ffb347;font-weight:700;">#7</td>
+
+<td style="text-align:left;">
+SpinMaster<br>
+<span style="font-size:13px;color:#8a8a95;">
+<img src="gem.webp" class="gem">3,850 wagered
+</span>
+</td>
+
+<td style="text-align:right;">
+<div class="table-reward">
+<img src="gem.webp" class="gem">5
+</div>
+</td>
+
 </tr>
 
 </table>
+
 </div>
 
 </div>
 
 <script>
-
-/* PARTICULAS */
-
-window.onload = function(){
 
 const canvas=document.getElementById("particles");
 const ctx=canvas.getContext("2d");
@@ -296,40 +494,7 @@ speedY:Math.random()*0.5+0.2
 function animate(){
 
 ctx.clearRect(0,0,canvas.width,canvas.height);
-
 ctx.fillStyle="rgba(255,255,255,0.25)";
-
-particles.forEach(p=>{
-ctx.beginPath();
-ctx.arc(p.x,p.y,p.size,0,Math.PI*2);
-ctx.fill();
-
-p.y+=p.speedY;
-
-if(p.y>canvas.height){
-p.y=0;
-p.x=Math.random()*canvas.width;
-}
-
-});
-
-requestAnimationFrame(animate);
-}
-
-animate();
-
-window.addEventListener("resize",()=>{
-canvas.width=window.innerWidth;
-canvas.height=window.innerHeight;
-});
-
-}
-
-function animate(){
-
-ctx.clearRect(0,0,canvas.width,canvas.height);
-
-ctx.fillStyle="rgba(255,255,255,0.2)";
 
 particles.forEach(p=>{
 
@@ -355,4 +520,5 @@ animate();
 
 </body>
 </html>
+
 
