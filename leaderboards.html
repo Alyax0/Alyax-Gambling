@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Clash Leaderboard</title>
   <link rel="icon" type="image/webp" href="gem.webp">
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800;900&display=swap" rel="stylesheet">
 
 <style>
 
@@ -17,20 +17,40 @@ box-sizing:border-box;
 
 body{
 font-family:'Poppins',sans-serif;
-background:#0d0d0f;
+background:#000;
 color:white;
 overflow-x:hidden;
 }
 
-/* PARTICULAS */
+/* FONDO: FRANJAS DIAGONALES + PUNTOS */
 
-#particles{
+body::before,
+body::after{
+content:"";
 position:fixed;
-top:0;
-left:0;
-width:100%;
-height:100%;
+inset:0;
 z-index:-1;
+pointer-events:none;
+}
+
+body::before{
+background:linear-gradient(155deg,
+transparent 14%,
+rgba(255,255,255,0.035) 14%,rgba(255,255,255,0.035) 27%,
+transparent 27%,transparent 31%,
+rgba(106,64,217,0.28) 31%,rgba(106,64,217,0.28) 37%,
+transparent 37%,transparent 63%,
+rgba(255,255,255,0.03) 63%,rgba(255,255,255,0.03) 71%,
+transparent 71%,transparent 76%,
+rgba(106,64,217,0.22) 76%,rgba(106,64,217,0.22) 81%,
+transparent 81%);
+}
+
+body::after{
+background:radial-gradient(rgba(151,137,205,0.45) 1.2px,transparent 1.7px) 0 0/9px 9px;
+-webkit-mask-image:linear-gradient(155deg,transparent 22%,#000 32%,transparent 44%,transparent 68%,#000 78%,transparent 88%);
+mask-image:linear-gradient(155deg,transparent 22%,#000 32%,transparent 44%,transparent 68%,#000 78%,transparent 88%);
+opacity:0.6;
 }
 
 /* HEADER */
@@ -64,298 +84,549 @@ color:#9146FF;
 /* MAIN */
 
 .container{
-padding:80px 20px;
+max-width:1180px;
+margin:auto;
+padding:70px 20px 100px;
+}
+
+/* HERO */
+
+.hero{
 text-align:center;
 }
 
-.title{
-font-size:40px;
+.hero-logo{
+width:64px;
+margin-bottom:10px;
+filter:drop-shadow(0 0 18px rgba(106,64,217,0.6));
+}
+
+.hero h1{
+font-size:120px;
+font-weight:900;
+line-height:0.9;
+letter-spacing:-2px;
+}
+
+.hero h1 span{
+display:block;
+color:transparent;
+-webkit-text-stroke:2px #9789cd;
+}
+
+/* STATS */
+
+.stats{
+display:flex;
+justify-content:center;
+margin:50px auto 0;
+max-width:760px;
+}
+
+.stat{
+flex:1;
+padding:12px 4px;
+}
+
+.stat + .stat{
+border-left:1px solid rgba(151,137,205,0.25);
+}
+
+.stat dt{
+font-size:12px;
+font-weight:700;
+color:#9789cd;
+margin-bottom:8px;
+}
+
+.stat dd{
+font-size:24px;
 font-weight:800;
-margin-bottom:15px;
-}
-
-.subtitle{
-color:#888;
-margin-bottom:40px;
-}
-
-/* PRIZE BOX */
-
-.prize-box{
-background:linear-gradient(145deg,#15151c,#0f0f14);
-padding:30px;
-border-radius:20px;
-max-width:500px;
-margin:0 auto 60px auto;
-box-shadow:0 0 40px rgba(145,70,255,0.25);
-}
-
-.prize-amount{
-font-size:30px;
-font-weight:800;
-color:#9146FF;
 display:flex;
 align-items:center;
 justify-content:center;
+gap:6px;
+}
+
+.stat dd .gem{
+width:20px;
+}
+
+/* BOTONES */
+
+.actions{
+display:flex;
+justify-content:center;
+gap:12px;
+margin-top:38px;
+}
+
+.btn{
+height:50px;
+padding:0 20px;
+border-radius:8px;
+display:inline-flex;
+align-items:center;
+gap:10px;
+font-family:inherit;
+font-size:14.4px;
+font-weight:800;
+color:white;
+text-decoration:none;
+cursor:pointer;
+transition:.2s;
+}
+
+.btn-play{
+background:#6a40d9;
+border:1px solid #6a40d9;
+}
+
+.btn-play:hover{
+background:#7a52e6;
+}
+
+.btn-code{
+background:rgba(106,64,217,0.22);
+border:1px solid rgba(151,137,205,0.45);
+font-weight:400;
+color:#9789cd;
+}
+
+.btn-code b{
+color:white;
+font-weight:800;
+}
+
+.btn-code:hover{
+background:rgba(106,64,217,0.32);
+}
+
+/* PODIO */
+
+.podium{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:16px;
+align-items:start;
+max-width:1180px;
+margin:90px auto 0;
+}
+
+.podium-player{
+position:relative;
+border-radius:14px;
+overflow:hidden;
+text-align:center;
+color:var(--ink);
+text-shadow:0 1px 0 var(--hl);
+box-shadow:
+inset 0 1px 0 rgba(255,255,255,0.6),
+inset 0 -22px 32px -24px rgba(0,0,0,0.55),
+0 26px 54px -34px rgba(0,0,0,0.95),
+0 -18px 60px -40px var(--glow);
+transition:transform .25s;
+}
+
+.podium-player:hover{
+transform:translateY(-4px);
+}
+
+.podium-1{
+--ink:rgb(122,83,4);
+--hl:rgba(255,246,196,0.5);
+--num:rgba(160,109,5,0.4);
+--band:rgba(160,109,5,0.26);
+--glow:rgba(255,206,0,0.4);
+background:linear-gradient(148deg,rgb(255,246,196) 0%,rgb(255,206,0) 46%,rgb(196,146,3) 100%);
+}
+
+.podium-2{
+--ink:rgb(96,105,128);
+--hl:rgba(255,255,255,0.5);
+--num:rgba(126,138,168,0.4);
+--band:rgba(126,138,168,0.26);
+--glow:rgba(207,214,230,0.34);
+background:linear-gradient(148deg,rgb(255,255,255) 0%,rgb(207,214,230) 46%,rgb(157,167,192) 100%);
+margin-top:34px;
+}
+
+.podium-3{
+--ink:rgb(95,50,18);
+--hl:rgba(246,189,133,0.5);
+--num:rgba(125,66,24,0.4);
+--band:rgba(125,66,24,0.26);
+--glow:rgba(205,127,50,0.36);
+background:linear-gradient(148deg,rgb(246,189,133) 0%,rgb(205,127,50) 46%,rgb(155,89,34) 100%);
+margin-top:44px;
+}
+
+.podium-rank{
+position:absolute;
+top:6px;
+left:14px;
+font-size:56px;
+font-weight:900;
+line-height:1;
+color:var(--num);
+text-shadow:none;
+}
+
+.podium-1 .podium-rank{
+font-size:64px;
+}
+
+.podium-name{
+padding:30px 20px 0;
+font-size:18px;
+font-weight:800;
+}
+
+.podium-1 .podium-name{
+padding-top:34px;
+}
+
+.podium-stats dt{
+font-size:9.5px;
+font-weight:800;
+letter-spacing:1.5px;
+}
+
+.podium-stats dd{
+font-weight:900;
+display:flex;
+align-items:center;
+justify-content:center;
+gap:6px;
+}
+
+.podium-stats .gem{
+width:18px;
+}
+
+.podium-wager{
+padding:16px 20px 18px;
+}
+
+.podium-wager dt{
+margin-bottom:2px;
+}
+
+.podium-wager dd{
+font-size:20px;
+}
+
+.podium-1 .podium-wager dd{
+font-size:22px;
+}
+
+.podium-prize{
+padding:12px 20px 14px;
+background:var(--band);
+box-shadow:
+inset 0 1px 0 var(--hl),
+inset 0 9px 16px -11px rgba(0,0,0,0.5);
+}
+
+.podium-prize dd{
+font-size:21px;
+}
+
+.podium-1 .podium-prize dd{
+font-size:23px;
+}
+
+/* PROGRESO DEL RACE */
+
+.race{
+max-width:872px;
+margin:62px auto 0;
+}
+
+.race-info{
+display:grid;
+grid-template-columns:1fr auto 1fr;
+align-items:end;
+gap:20px;
+margin-bottom:30px;
+}
+
+.race-label{
+display:block;
+font-size:11px;
+font-weight:800;
+letter-spacing:0.7px;
+color:#9789cd;
+margin-bottom:4px;
+}
+
+.race-date{
+font-size:13px;
+font-weight:700;
+}
+
+.race-end{
+text-align:right;
+}
+
+.race-day{
+text-align:center;
+}
+
+.race-day strong{
+display:block;
+font-size:16.3px;
+font-weight:900;
+letter-spacing:-0.16px;
+}
+
+.race-status{
+font-size:11px;
+font-weight:700;
+color:#6a40d9;
+}
+
+.race-bar{
+position:relative;
+height:8px;
+border-radius:999px;
+background:
+repeating-linear-gradient(90deg,rgba(151,137,205,0.28) 0,rgba(151,137,205,0.28) 1px,transparent 1px,transparent 10%),
+rgba(44,40,82,0.85);
+box-shadow:inset 0 1px 2px rgba(0,0,0,0.45);
+}
+
+.race-fill{
+height:100%;
+border-radius:999px;
+background:linear-gradient(90deg,#6a40d9,#9789cd);
+}
+
+.race-thumb{
+position:absolute;
+top:50%;
+width:16px;
+height:16px;
+border-radius:50%;
+background:#9789cd;
+border:3px solid #52439b;
+transform:translate(-50%,-50%);
+}
+
+.race-pct{
+position:absolute;
+bottom:24px;
+transform:translateX(-50%);
+padding:3px 9px;
+border-radius:6px;
+background:#52439b;
+color:#f2eeff;
+font-size:10.5px;
+font-weight:900;
+white-space:nowrap;
+}
+
+/* LEADERBOARD */
+
+.board{
+max-width:1180px;
+margin:60px auto 0;
+}
+
+.board-head{
+display:flex;
+justify-content:space-between;
+align-items:flex-end;
+gap:20px;
+padding:0 4px 18px;
+}
+
+.board-kicker{
+font-size:12px;
+font-weight:800;
+color:#6a40d9;
+margin-bottom:4px;
+}
+
+.board-title{
+font-size:30px;
+font-weight:700;
+letter-spacing:-0.45px;
+}
+
+.board-updated{
+text-align:right;
+font-size:11px;
+color:#9789cd;
+}
+
+.board-updated b{
+display:block;
+margin-top:2px;
+font-size:11.5px;
+font-weight:700;
+color:white;
+}
+
+.board-cols,
+.board-row{
+display:grid;
+grid-template-columns:72px 1fr 170px 110px;
+align-items:center;
+}
+
+.board-cols{
+padding:0 16px 10px;
+font-size:10px;
+font-weight:800;
+letter-spacing:1px;
+color:#d9d1f4;
+}
+
+.board-cols span:nth-child(3){
+text-align:right;
+padding-right:20px;
+}
+
+.board-cols span:nth-child(4){
+text-align:right;
+padding-right:22px;
+}
+
+.board-list{
+list-style:none;
+display:flex;
+flex-direction:column;
 gap:10px;
 }
 
-.prize-amount .gem{
-width:28px;
+.board-row{
+min-height:76px;
+padding:14px 16px;
+border-radius:12px;
+background:linear-gradient(100deg,rgba(44,40,82,0.55),rgba(25,25,57,0.85) 55%);
+border:1px solid rgba(151,137,205,0.16);
+transition:border-color .2s;
 }
 
-.timer{
-margin-top:10px;
-color:#aaa;
+.board-row:hover{
+border-color:rgba(151,137,205,0.4);
 }
 
-/* TOP 3 */
+.board-pos{
+padding-left:20px;
+font-size:24px;
+font-weight:900;
+letter-spacing:-0.96px;
+background:linear-gradient(160deg,#d9d1f4 0%,#9789cd 100%);
+-webkit-background-clip:text;
+background-clip:text;
+color:transparent;
+}
 
-.top3{
+.board-player{
 display:flex;
-justify-content:center;
-align-items:flex-end;
-gap:40px;
-margin-bottom:70px;
-}
-
-/* CARDS */
-
-.card{
-padding:25px;
-border-radius:20px;
-display:flex;
-flex-direction:column;
 align-items:center;
-justify-content:center;
+gap:14px;
+min-width:0;
+}
+
+.board-icon{
+width:34px;
+flex-shrink:0;
+}
+
+.board-info{
+flex:1;
+min-width:0;
+}
+
+.board-name{
+font-size:14.5px;
+font-weight:700;
+}
+
+.board-gap{
+display:flex;
+align-items:center;
 gap:12px;
-position:relative;
-text-align:center;
-transition:.25s;
+margin-top:6px;
 }
 
-.card:hover{
-transform:translateY(-6px) scale(1.02);
+.board-gap-bar{
+flex:1;
+max-width:610px;
+height:4px;
+border-radius:999px;
+background:rgba(44,40,82,0.85);
+overflow:hidden;
 }
 
-/* TOP 1 */
-
-.first{
-width:286px;
-height:383px;
-background:rgba(255,215,0,0.12);
-border:2px solid gold;
-
-box-shadow:
-0 0 35px rgba(255,215,0,0.35),
-0 0 70px rgba(255,215,0,0.15);
+.board-gap-fill{
+height:100%;
+background:#7b62d6;
 }
 
-/* TOP 2 */
-
-.second{
-width:208px;
-height:275px;
-background:rgba(192,192,192,0.15);
-border:2px solid silver;
-
-box-shadow:
-0 0 20px rgba(192,192,192,0.2);
+.board-gap-text{
+font-size:10px;
+font-weight:700;
+color:#9789cd;
+white-space:nowrap;
 }
 
-/* TOP 3 */
-
-.third{
-width:208px;
-height:275px;
-background:rgba(205,127,50,0.18);
-border:2px solid #cd7f32;
-
-box-shadow:
-0 0 20px rgba(205,127,50,0.2);
-}
-
-/* BADGE */
-
-.badge{
-position:absolute;
-top:-18px;
-left:50%;
-transform:translateX(-50%);
-width:40px;
-height:40px;
-border-radius:50%;
+.board-wager{
+text-align:right;
+padding-right:20px;
+font-size:14.7px;
+font-weight:800;
 display:flex;
 align-items:center;
-justify-content:center;
-font-weight:800;
-color:black;
+justify-content:flex-end;
+gap:6px;
 }
 
-.first .badge{background:gold;}
-.second .badge{background:silver;}
-.third .badge{background:#cd7f32;}
-
-/* AVATAR */
-
-.top-avatar{
-width:70px;
-height:70px;
-border-radius:50%;
-object-fit:cover;
-border:3px solid #b8b8b8;
+.board-prize{
+text-align:right;
 }
 
-.first .top-avatar{
-width:120px;
-height:120px;
-border:4px solid gold;
-box-shadow:0 0 15px rgba(255,215,0,0.45);
-}
-
-.second .top-avatar{
-border:3px solid #c9c9c9;
-}
-
-.third .top-avatar{
-border:3px solid #c9c9c9;
-}
-
-/* AVATAR SIN FOTO (INICIAL) */
-
-.avatar-initial{
-display:flex;
+.prize-pill{
+display:inline-flex;
 align-items:center;
-justify-content:center;
-background:#15151c;
-font-weight:800;
-font-size:28px;
+gap:6px;
+padding:9px 12px;
+border-radius:8px;
+background:rgba(106,64,217,0.09);
+border:1px solid rgba(106,64,217,0.32);
+color:#b09aef;
+font-size:14px;
+font-weight:900;
 }
-
-.first .avatar-initial{
-font-size:48px;
-}
-
-/* USER */
-
-.user{
-font-weight:600;
-font-size:16px;
-}
-
-/* GEM */
 
 .gem{
 width:16px;
 }
 
-/* AMOUNT */
-
-.amount{
-color:#9146FF;
-font-weight:700;
-display:flex;
-align-items:center;
-gap:6px;
-font-size:16px;
-}
-
-/* REWARD */
-
-.reward{
-margin-top:4px;
-padding:7px 16px;
-border-radius:10px;
-display:flex;
-align-items:center;
-gap:6px;
-font-weight:700;
-font-size:15px;
-border:1px solid rgba(255,255,255,0.2);
-background:rgba(0,0,0,0.25);
-}
-
-.first .reward{
-border:2px solid gold;
-color:gold;
-}
-
-.second .reward{
-border:2px solid silver;
-color:silver;
-}
-
-.third .reward{
-border:2px solid #cd7f32;
-color:#cd7f32;
-}
-
-/* TABLE */
-
-.table-box{
-max-width:900px;
-margin:auto;
-background:#15151c;
-border-radius:20px;
-padding:30px;
-box-shadow:0 0 30px rgba(0,0,0,0.4);
-}
-
-table{
-width:100%;
-border-collapse:separate;
-border-spacing:0 10px;
-}
-
-tr{
-transition:all .25s ease;
-}
-
-td{
-padding:16px 20px;
-background:#121217;
-transition:all .25s ease;
-}
-
-/* ESQUINAS REDONDEADAS */
-
-td:first-child{
-border-radius:12px 0 0 12px;
-}
-
-td:last-child{
-border-radius:0 12px 12px 0;
-}
-
-/* HOVER */
-
-tr:hover td{
-background:rgba(255,170,0,0.08);
-}
-
-tr:hover{
-transform:translateY(-3px);
-filter:drop-shadow(0 8px 18px rgba(255,170,0,0.18));
-}
-/* REWARD BOX (CUADRITO) */
-
-.table-reward{
-padding:6px 14px;
-border-radius:8px;
-display:inline-flex;
-align-items:center;
-gap:6px;
-font-weight:700;
-
-background:rgba(255,170,0,0.12);
-border:2px solid rgba(255,170,0,0.6);
-
-color:#ffb347;
-
-box-shadow:0 0 10px rgba(255,170,0,0.2);
-}
-
 /* CELULAR */
+
+@media (max-width:860px){
+
+.podium{
+grid-template-columns:1fr;
+max-width:380px;
+gap:20px;
+margin-top:60px;
+}
+
+.podium-1{
+order:-1;
+}
+
+.podium-2,
+.podium-3{
+margin-top:0;
+}
+
+}
 
 @media (max-width:700px){
 
@@ -373,50 +644,111 @@ font-size:14px;
 }
 
 .container{
-padding:50px 16px;
+padding:50px 16px 70px;
 }
 
-.title{
-font-size:32px;
+.hero h1{
+font-size:64px;
+letter-spacing:-1px;
 }
 
-.prize-box{
-padding:22px;
-margin-bottom:50px;
+.hero h1 span{
+-webkit-text-stroke:1.5px #9789cd;
 }
 
-.prize-amount{
-font-size:24px;
+.stats{
+margin-top:34px;
 }
 
-/* PODIO EN COLUMNA, EL #1 ARRIBA */
+.stat dt{
+font-size:9px;
+}
 
-.top3{
+.stat dd{
+font-size:16px;
+}
+
+.stat dd .gem{
+width:15px;
+}
+
+.actions{
+margin-top:28px;
+}
+
+.btn{
+height:44px;
+padding:0 16px;
+font-size:13px;
+}
+
+.race-info{
+grid-template-columns:1fr 1fr;
+gap:14px;
+}
+
+.race-day{
+grid-column:1 / -1;
+grid-row:1;
+}
+
+.race-date{
+font-size:11px;
+}
+
+.board-head{
 flex-direction:column;
-align-items:center;
-gap:35px;
-margin-bottom:50px;
+align-items:flex-start;
 }
 
-.first{
-order:-1;
+.board-updated{
+text-align:left;
 }
 
-.first,
-.second,
-.third{
-width:100%;
-max-width:300px;
-height:auto;
-padding:32px 20px 25px;
+.board-cols{
+display:none;
 }
 
-.table-box{
-padding:12px;
+.board-row{
+grid-template-columns:48px 1fr auto;
+grid-template-areas:
+"pos player prize"
+"pos wager prize";
+row-gap:6px;
 }
 
-td{
-padding:12px;
+.board-pos{
+grid-area:pos;
+padding-left:0;
+}
+
+.board-player{
+grid-area:player;
+}
+
+.board-icon{
+display:none;
+}
+
+.board-wager{
+grid-area:wager;
+justify-content:flex-start;
+padding-right:0;
+font-size:13px;
+}
+
+.board-prize{
+grid-area:prize;
+padding-left:10px;
+}
+
+.board-gap{
+flex-wrap:wrap;
+gap:4px 10px;
+}
+
+.board-gap-bar{
+flex-basis:100%;
 }
 
 }
@@ -426,8 +758,6 @@ padding:12px;
 
 <body>
 
-<canvas id="particles"></canvas>
-
 <header>
 <div class="logo">ALYAX COMMUNITY</div>
 <nav>
@@ -436,23 +766,52 @@ padding:12px;
 </nav>
 </header>
 
-<div class="container">
+<main class="container">
 
-<div class="title">Leaderboard</div>
-<div class="subtitle">Compite por el mayor wager quincenal</div>
+<section class="hero">
+<img src="gem.webp" class="hero-logo" alt="Clash.GG">
+<h1>CLASH<span>RACE</span></h1>
 
-<div class="prize-box">
-<div class="prize-amount" id="prize-amount"></div>
-<div class="timer" id="timer"></div>
+<dl class="stats">
+<div class="stat"><dt>POZO TOTAL</dt><dd id="stat-pool"></dd></div>
+<div class="stat"><dt>DURACIÓN</dt><dd id="stat-days"></dd></div>
+<div class="stat"><dt>PUESTOS PREMIADOS</dt><dd id="stat-top"></dd></div>
+</dl>
+
+<div class="actions">
+<a id="play-link" class="btn btn-play" target="_blank">Jugar en Clash</a>
+<button id="code-btn" class="btn btn-code" type="button">Código <b id="code-text"></b></button>
 </div>
+</section>
 
-<div class="top3" id="top3"></div>
+<section class="podium" id="podium"></section>
 
-<div class="table-box">
-<table id="ranking"></table>
+<section class="race">
+<div class="race-info">
+<div><span class="race-label">ARRANCÓ</span><span class="race-date" id="race-start"></span></div>
+<div class="race-day"><strong id="race-day"></strong><span class="race-status" id="race-status"></span></div>
+<div class="race-end"><span class="race-label">CIERRA</span><span class="race-date" id="race-end"></span></div>
 </div>
-
+<div class="race-bar">
+<div class="race-fill" id="race-fill"></div>
+<span class="race-thumb" id="race-thumb"></span>
+<span class="race-pct" id="race-pct"></span>
 </div>
+</section>
+
+<section class="board">
+<div class="board-head">
+<div>
+<p class="board-kicker">RANKING OFICIAL</p>
+<h2 class="board-title">Leaderboard</h2>
+</div>
+<div class="board-updated">Última actualización<b id="updated"></b></div>
+</div>
+<div class="board-cols"><span>POS.</span><span>JUGADOR</span><span>WAGER</span><span>PREMIO</span></div>
+<ol class="board-list" id="ranking"></ol>
+</section>
+
+</main>
 
 <script>
 
@@ -462,21 +821,25 @@ const LEADERBOARD={
 prizePool:500,                         // gemas
 periodDays:14,                         // quincenal
 endsAt:"2026-11-01T23:59:00-03:00",    // FECHA DE EJEMPLO: cierre del período actual
+updatedAt:"2026-10-23T12:00:00-03:00", // última vez que se actualizó el ranking
+code:"ALYAX",                          // código de afiliado
+referral:"https://clash.gg/r/ALYAX",   // link de "Jugar en Clash"
 rewards:[250,125,75,25,25],            // premio en gemas por puesto (#1, #2, ...); debe sumar prizePool
-players:[                              // avatar: URL de la foto, o "" para mostrar la inicial
-{name:"LILGIO",wagered:12540,avatar:""},
-{name:"Tiempos",wagered:10210,avatar:""},
-{name:"PlayerX",wagered:8430,avatar:""},
-{name:"GamerPro",wagered:6990,avatar:""},
-{name:"BetMaster",wagered:5420,avatar:""},
-{name:"CryptoKid",wagered:4200,avatar:""},
-{name:"SpinMaster",wagered:3850,avatar:""}
+players:[
+{name:"LILGIO",wagered:12540},
+{name:"Tiempos",wagered:10210},
+{name:"PlayerX",wagered:8430},
+{name:"GamerPro",wagered:6990},
+{name:"BetMaster",wagered:5420},
+{name:"CryptoKid",wagered:4200},
+{name:"SpinMaster",wagered:3850}
 ]
 };
 
 /* RENDER */
 
 const GEM='<img src="gem.webp" class="gem" alt="">';
+const DAY=86400000;
 
 function esc(s){
 return String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
@@ -486,112 +849,96 @@ function fmt(n){
 return Number(n).toLocaleString("en-US");
 }
 
-function avatar(p){
-if(p.avatar){
-return `<img src="${esc(p.avatar)}" class="top-avatar" alt="${esc(p.name)}">`;
-}
-return `<div class="top-avatar avatar-initial">${esc(p.name.charAt(0).toUpperCase())}</div>`;
+const DATE_FMT=new Intl.DateTimeFormat("es-AR",{
+day:"2-digit",month:"short",year:"numeric",
+hour:"2-digit",minute:"2-digit",hour12:true,
+timeZone:"America/Argentina/Buenos_Aires"
+});
+
+function fmtDate(t){
+return DATE_FMT.format(new Date(t))+" ART";
 }
 
 const ranked=[...LEADERBOARD.players].sort((a,b)=>b.wagered-a.wagered);
 const reward=i=>LEADERBOARD.rewards[i]||0;
 
-document.getElementById("prize-amount").innerHTML=`${GEM}${fmt(LEADERBOARD.prizePool)} Prize Pool`;
+// hero
+document.getElementById("stat-pool").innerHTML=`${GEM}${fmt(LEADERBOARD.prizePool)}`;
+document.getElementById("stat-days").textContent=`${LEADERBOARD.periodDays} días`;
+document.getElementById("stat-top").textContent=`Top ${LEADERBOARD.rewards.length}`;
+document.getElementById("play-link").href=LEADERBOARD.referral;
+document.getElementById("code-text").textContent=LEADERBOARD.code;
 
-// orden visual del podio: 2do, 1ro, 3ro
-const podiumClass=["first","second","third"];
-document.getElementById("top3").innerHTML=[1,0,2]
+const codeBtn=document.getElementById("code-btn");
+codeBtn.addEventListener("click",()=>{
+navigator.clipboard?.writeText(LEADERBOARD.code).then(()=>{
+codeBtn.innerHTML="¡Copiado!";
+setTimeout(()=>{codeBtn.innerHTML=`Código <b>${esc(LEADERBOARD.code)}</b>`;},1500);
+});
+});
+
+// podio: orden visual 2do, 1ro, 3ro
+document.getElementById("podium").innerHTML=[1,0,2]
 .filter(i=>ranked[i])
 .map(i=>`
-<div class="card ${podiumClass[i]}">
-<div class="badge">${i+1}</div>
-${avatar(ranked[i])}
-<div class="user">${esc(ranked[i].name)}</div>
-<div class="amount">${GEM}${fmt(ranked[i].wagered)}</div>
-<div class="reward">${GEM}${fmt(reward(i))}</div>
-</div>`).join("");
+<article class="podium-player podium-${i+1}">
+<span class="podium-rank">${i+1}</span>
+<div class="podium-name">${esc(ranked[i].name)}</div>
+<dl class="podium-stats">
+<div class="podium-wager"><dt>WAGER</dt><dd>${GEM}${fmt(ranked[i].wagered)}</dd></div>
+<div class="podium-prize"><dt>PREMIO</dt><dd>${GEM}${fmt(reward(i))}</dd></div>
+</dl>
+</article>`).join("");
 
+// tabla desde el #4
 document.getElementById("ranking").innerHTML=ranked.slice(3).map((p,j)=>{
 const i=j+3;
+const above=ranked[i-1];
+const pct=Math.min(100,p.wagered/above.wagered*100);
 return `
-<tr>
-<td style="width:60px;color:#ffb347;font-weight:700;">#${i+1}</td>
-<td style="text-align:left;">
-${esc(p.name)}<br>
-<span style="font-size:13px;color:#8a8a95;">
-${GEM}${fmt(p.wagered)} wagered
-</span>
-</td>
-<td style="text-align:right;">
-${reward(i)?`<div class="table-reward">
-${GEM}${fmt(reward(i))}
-</div>`:""}
-</td>
-</tr>`;
+<li class="board-row">
+<span class="board-pos">${String(i+1).padStart(2,"0")}</span>
+<div class="board-player">
+<img src="gem.webp" class="board-icon" alt="">
+<div class="board-info">
+<div class="board-name">${esc(p.name)}</div>
+<div class="board-gap">
+<div class="board-gap-bar"><div class="board-gap-fill" style="width:${pct}%"></div></div>
+<span class="board-gap-text">${fmt(above.wagered-p.wagered)} para el #${i}</span>
+</div>
+</div>
+</div>
+<span class="board-wager">${GEM}${fmt(p.wagered)}</span>
+<span class="board-prize">${reward(i)?`<span class="prize-pill">${GEM}${fmt(reward(i))}</span>`:""}</span>
+</li>`;
 }).join("");
 
-/* CUENTA REGRESIVA — si la fecha ya pasó, salta al cierre del próximo período */
+document.getElementById("updated").textContent=fmtDate(LEADERBOARD.updatedAt);
 
-function updateTimer(){
-const period=LEADERBOARD.periodDays*86400000;
+/* PROGRESO DEL RACE — si la fecha de cierre ya pasó, salta al período siguiente */
+
+function updateRace(){
+const period=LEADERBOARD.periodDays*DAY;
 let end=new Date(LEADERBOARD.endsAt).getTime();
 const now=Date.now();
 while(end<=now){end+=period;}
+const start=end-period;
 
-const mins=Math.floor((end-now)/60000);
-const d=Math.floor(mins/1440);
-const h=Math.floor(mins%1440/60);
-const m=mins%60;
+const pct=Math.min(100,Math.max(0,(now-start)/period*100));
+const day=Math.min(LEADERBOARD.periodDays,Math.floor((now-start)/DAY)+1);
 
-document.getElementById("timer").textContent=`⏳ Termina en ${d} ${d===1?"día":"días"} ${h}h ${m}m`;
+document.getElementById("race-start").textContent=fmtDate(start);
+document.getElementById("race-end").textContent=fmtDate(end);
+document.getElementById("race-day").textContent=`Día ${day} de ${LEADERBOARD.periodDays}`;
+document.getElementById("race-status").textContent="En curso";
+document.getElementById("race-fill").style.width=pct+"%";
+document.getElementById("race-thumb").style.left=pct+"%";
+document.getElementById("race-pct").style.left=pct+"%";
+document.getElementById("race-pct").textContent=Math.floor(pct)+"%";
 }
 
-updateTimer();
-setInterval(updateTimer,30000);
-
-/* PARTICULAS */
-
-const canvas=document.getElementById("particles");
-const ctx=canvas.getContext("2d");
-
-canvas.width=window.innerWidth;
-canvas.height=window.innerHeight;
-
-let particles=[];
-
-for(let i=0;i<80;i++){
-particles.push({
-x:Math.random()*canvas.width,
-y:Math.random()*canvas.height,
-size:Math.random()*2,
-speedY:Math.random()*0.5+0.2
-});
-}
-
-function animate(){
-
-ctx.clearRect(0,0,canvas.width,canvas.height);
-ctx.fillStyle="rgba(255,255,255,0.25)";
-
-particles.forEach(p=>{
-
-ctx.beginPath();
-ctx.arc(p.x,p.y,p.size,0,Math.PI*2);
-ctx.fill();
-
-p.y+=p.speedY;
-
-if(p.y>canvas.height){
-p.y=0;
-p.x=Math.random()*canvas.width;
-}
-
-});
-
-requestAnimationFrame(animate);
-}
-
-animate();
+updateRace();
+setInterval(updateRace,60000);
 
 </script>
 
