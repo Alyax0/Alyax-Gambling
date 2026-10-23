@@ -57,18 +57,23 @@ opacity:0.6;
 /* HEADER */
 
 header{
-display:grid;
-grid-template-columns:1fr auto 1fr;
+display:flex;
+justify-content:center;
 align-items:center;
-gap:20px;
+gap:84px;
 padding:22px 60px;
 }
 
 .logo{
 font-weight:800;
 font-size:20px;
+letter-spacing:-0.5px;
 color:white;
 text-decoration:none;
+}
+
+.logo span{
+color:#f7a823;
 }
 
 .nav-pill{
@@ -641,6 +646,18 @@ font-weight:900;
 width:16px;
 }
 
+/* HEADER: LOGO ARRIBA DEL MENÚ CUANDO NO ENTRAN EN UNA FILA */
+
+@media (max-width:960px){
+
+header{
+flex-direction:column;
+gap:14px;
+padding:18px 16px;
+}
+
+}
+
 /* CELULAR */
 
 @media (max-width:860px){
@@ -802,7 +819,7 @@ flex-basis:100%;
 <body>
 
 <header>
-<a href="index.html" class="logo">ALYAX COMMUNITY</a>
+<a href="index.html" class="logo">Alyax<span>Community</span></a>
 <nav class="nav-pill">
 <a href="index.html"><i class="fa-solid fa-house"></i><span>Home</span></a>
 <a href="index.html#sponsors"><i class="fa-regular fa-star"></i><span>Sponsors</span></a>
