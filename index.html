@@ -63,12 +63,12 @@ header{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;paddin
 .hero-scroll:hover{color:white;}
 @keyframes bob{0%,100%{transform:translate(-50%,0);}50%{transform:translate(-50%,8px);}}
 
-/* GEMAS FLOTANDO */
-.float-gem{position:absolute;z-index:-1;pointer-events:none;filter:drop-shadow(0 10px 30px rgba(247,168,35,0.35));animation:float 6s ease-in-out infinite;}
-.fg1{--r:-18deg;width:110px;top:14%;left:14%;}
-.fg2{--r:22deg;width:80px;top:12%;right:16%;animation-delay:-2s;}
-.fg3{--r:12deg;width:130px;bottom:16%;left:10%;opacity:0.45;filter:blur(2px);animation-delay:-4s;}
-.fg4{--r:-10deg;width:95px;bottom:20%;right:12%;animation-delay:-1s;}
+/* ARMAS DE CS FLOTANDO (imágenes del Steam Market) */
+.float-item{position:absolute;z-index:-1;pointer-events:none;filter:drop-shadow(0 14px 24px rgba(0,0,0,0.7));animation:float 6s ease-in-out infinite;}
+.fw-ak{--r:-18deg;width:15vw;max-width:290px;top:8%;left:7%;}
+.fw-knife{--r:22deg;width:10vw;max-width:190px;top:8%;right:11%;animation-delay:-2s;}
+.fw-awp{--r:12deg;width:17vw;max-width:330px;bottom:10%;left:4%;animation-delay:-4s;}
+.fw-deagle{--r:-10deg;width:10vw;max-width:190px;bottom:16%;right:9%;animation-delay:-1s;}
 @keyframes float{0%,100%{transform:translateY(0) rotate(var(--r));}50%{transform:translateY(-18px) rotate(var(--r));}}
 
 /* BOTON */
@@ -159,9 +159,9 @@ header{display:flex;flex-direction:column;gap:14px;padding:18px 16px;}
 .logo{margin-right:0;}
 }
 
-/* HERO: SIN GEMAS FLOTANDO EN PANTALLAS CHICAS */
+/* HERO: SIN ARMAS FLOTANDO EN PANTALLAS CHICAS */
 @media(max-width:900px){
-.float-gem{display:none;}
+.float-item{display:none;}
 }
 
 /* HEADER EN CELULAR: SOLO ÍCONOS, MENOS CLASH */
@@ -206,10 +206,11 @@ footer{padding:50px 16px 26px;}
 </header>
 
 <section class="hero">
-<img src="gem.webp" class="float-gem fg1" alt="" aria-hidden="true">
-<img src="gem.webp" class="float-gem fg2" alt="" aria-hidden="true">
-<img src="gem.webp" class="float-gem fg3" alt="" aria-hidden="true">
-<img src="gem.webp" class="float-gem fg4" alt="" aria-hidden="true">
+<!-- AK-47 | Fire Serpent, ★ Karambit | Marble Fade, AWP | Asiimov, Desert Eagle | Blaze -->
+<img src="https://community.cloudflare.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyLwlcK3wiFO0PSneqF-JeKDC2mE_u995LZWTTuygxIYvzSCkpu3cnvFPQB2DpUkROFY4Rntw93lP7i241DbiI1BxSuviHlKunk_6-sHU71lpPMTRLyP4Q/360fx360f" class="float-item fw-ak" alt="" aria-hidden="true">
+<img src="https://community.cloudflare.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL6kJ_m-B1Q7uCvZaZkNM-SA1idwPx0vORWSSi3kCIrujqNjsGveH2RaVRxX5ohEe4Juhawm4fiM-ji4APf2YMXmSz_hyoduytv4uhWT-N7rfLHGBJ4/360fx360f" class="float-item fw-knife" alt="" aria-hidden="true">
+<img src="https://community.cloudflare.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyLwiYbf_jdk7uW-V6V-Kf2cGFidxOp_pewnF3nhxEt0sGnSzN76dH3GOg9xC8FyEORftRe-x9PuYurq71bW3d8UnjK-0H0YSTpMGQ/360fx360f" class="float-item fw-awp" alt="" aria-hidden="true">
+<img src="https://community.cloudflare.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL1m5fn8Sdk7vORbqhsLfWAMWuZxuZi_uI_TX6wxxkjsGXXnImsJ37COlUoWcByEOMOtxa5kdXmNu3htVPZjN1bjXKpkHLRfQU/360fx360f" class="float-item fw-deagle" alt="" aria-hidden="true">
 
 <h1 class="hero-title">ALYAX<span>COMMUNITY</span></h1>
 
