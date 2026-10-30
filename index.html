@@ -31,9 +31,8 @@ header{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;paddin
 
 /* HERO */
 .hero{position:relative;min-height:calc(100vh - 94px);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:40px 20px 100px;}
-.hero::before{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;background:radial-gradient(ellipse 55% 45% at 50% 40%,rgba(145,70,255,0.18),transparent 70%);}
-.hero-title{font-size:clamp(44px,9vw,140px);font-weight:900;line-height:0.92;letter-spacing:-2px;text-shadow:0 0 40px rgba(145,70,255,0.35);}
-.hero-title span{display:block;color:transparent;-webkit-text-stroke:2px #f7a823;text-shadow:none;}
+.hero-title{font-size:clamp(44px,9vw,140px);font-weight:900;line-height:0.92;letter-spacing:-2px;}
+.hero-title span{display:block;color:transparent;-webkit-text-stroke:2px #f7a823;}
 .hero-tag{margin-top:44px;font-size:20px;font-weight:600;color:#e4e4e7;}
 .hero-sub{margin-top:6px;font-size:16px;color:#8a8a95;}
 .hero-sub b{color:#9146FF;padding:0 6px;}
@@ -77,16 +76,13 @@ header{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;paddin
 .btn-outline{background:rgba(13,13,15,0.6);border-color:rgba(255,255,255,0.12);box-shadow:none;}
 .btn-outline:hover{border-color:rgba(145,70,255,0.6);box-shadow:0 0 20px rgba(145,70,255,0.25);}
 
-/* SECCIONES */
-.section{padding:80px 20px;text-align:center;}
-.section h2{font-size:36px;margin-bottom:40px;}
-.cards{display:flex;justify-content:center;gap:30px;flex-wrap:wrap;}
-.card{background:linear-gradient(145deg,#15151c,#0f0f14);padding:30px;border-radius:20px;width:280px;box-shadow:0 0 30px rgba(145,70,255,0.15);transition:0.3s;}
-.card:hover{transform:translateY(-8px);}
-.card .gem{width:20px;vertical-align:-3px;margin-right:6px;}
-
 /* SPONSOR */
-.sponsor-section{display:flex;justify-content:center;padding:80px 20px 0;}
+.sponsor-section{display:flex;flex-direction:column;align-items:center;padding:80px 20px 0;}
+.sponsors-head{text-align:center;margin-bottom:36px;}
+.sponsors-head h2{font-size:clamp(32px,5vw,48px);font-weight:800;line-height:1.1;}
+.sponsors-head h2 span{color:transparent;-webkit-text-stroke:1.5px #f7a823;}
+.sponsors-head p{display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:12px;margin-top:12px;font-size:17px;color:#a1a1aa;}
+.code-badge{padding:6px 14px;border:1px solid rgba(247,168,35,0.6);border-radius:8px;background:rgba(247,168,35,0.08);color:#f7a823;font-size:14px;font-weight:700;}
 .sponsor-card{position:relative;width:340px;max-width:100%;padding:84px 18px 20px;border-radius:18px;overflow:hidden;text-align:center;font-family:'Chakra Petch',sans-serif;background:linear-gradient(180deg,#2a1d08 0%,#16120c 40%,#111014 100%);border:1px solid rgba(247,168,35,0.18);box-shadow:0 0 40px rgba(0,0,0,0.6),0 0 60px rgba(247,168,35,0.08);transition:0.3s;}
 .sponsor-card:hover{transform:translateY(-6px);box-shadow:0 0 40px rgba(0,0,0,0.6),0 0 70px rgba(247,168,35,0.16);}
 .sponsor-drip{position:absolute;top:0;left:0;width:100%;height:70px;}
@@ -219,19 +215,14 @@ header{display:flex;flex-direction:column;gap:14px;padding:18px 16px;}
 <a href="https://x.com/xAlyahxx" target="_blank" class="hs-x"><i class="fab fa-x-twitter"></i>X</a>
 </div>
 
-<a href="#prize" class="hero-scroll" aria-label="Bajar"><i class="fa-solid fa-chevron-down"></i></a>
+<a href="#sponsors" class="hero-scroll" aria-label="Bajar"><i class="fa-solid fa-chevron-down"></i></a>
 </section>
 
-<div class="section" id="prize">
-<h2>💰 Prize Pool Quincenal</h2>
-<div class="cards">
-<div class="card"><h3><img src="gem.webp" class="gem" alt="Gems"><span id="counter">0</span> Prize Pool</h3></div>
-<div class="card"><h3>Top 5 Premiados</h3></div>
-<div class="card"><h3>Reinicio Quincenal</h3></div>
-</div>
-</div>
-
 <div class="sponsor-section" id="sponsors">
+<div class="sponsors-head">
+<h2>Sponsors <span>Oficiales</span></h2>
+<p>Beneficios exclusivos con el código <span class="code-badge">ALYAX</span></p>
+</div>
 <div class="sponsor-card">
 <svg class="sponsor-drip" viewBox="0 0 340 70" preserveAspectRatio="none" aria-hidden="true">
 <defs><linearGradient id="drip" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f7a823"/><stop offset="1" stop-color="#9a5a00"/></linearGradient></defs>
@@ -305,18 +296,6 @@ header{display:flex;flex-direction:column;gap:14px;padding:18px 16px;}
 </footer>
 
 <script>
-/* CONTADOR PRIZE POOL */
-let count=0;
-let target=500;
-function updateCounter(){
-  if(count<target){
-    count+=5;
-    document.getElementById("counter").innerText=count;
-    setTimeout(updateCounter,20);
-  }
-}
-updateCounter();
-
 /* COPIAR CÓDIGO */
 document.querySelectorAll(".code-copy").forEach(btn=>{
   btn.addEventListener("click",()=>{
