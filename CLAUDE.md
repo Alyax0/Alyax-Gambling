@@ -22,7 +22,7 @@ python -m http.server 8000
 
 Each page is fully self-contained: its CSS lives in an inline `<style>` and its JS in an inline `<script>`. There is no shared stylesheet or script, so the header/nav and base styles are **duplicated** in both files — a change to either must be made in both pages. Only `index.html` has the falling-particle canvas; the leaderboard uses a CSS diagonal-stripe background instead. The two files use different formatting (`index.html` minified one-rule-per-line CSS; `leaderboards.html` expanded); match the style of the file being edited.
 
-External dependencies (CDN only): Google Fonts Poppins; Font Awesome 6.5.0 (index only, for footer icons).
+External dependencies (CDN only): Google Fonts Poppins; Font Awesome 6.5.0 (header nav icons on both pages, footer icons on index).
 
 ## Things to know
 
