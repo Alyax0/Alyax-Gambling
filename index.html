@@ -90,10 +90,9 @@ header{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;paddin
 .sponsor-card{position:relative;width:340px;max-width:100%;padding:84px 18px 20px;border-radius:18px;overflow:hidden;text-align:center;font-family:'Chakra Petch',sans-serif;background:linear-gradient(180deg,#2a1d08 0%,#16120c 40%,#111014 100%);border:1px solid rgba(247,168,35,0.18);box-shadow:0 0 40px rgba(0,0,0,0.6),0 0 60px rgba(247,168,35,0.08);transition:0.3s;}
 .sponsor-card:hover{transform:translateY(-6px);box-shadow:0 0 40px rgba(0,0,0,0.6),0 0 70px rgba(247,168,35,0.16);}
 .sponsor-drip{position:absolute;top:0;left:0;width:100%;height:70px;}
-.sponsor-logo{display:flex;align-items:center;justify-content:center;gap:8px;font-size:20px;font-weight:700;letter-spacing:0.5px;}
-.sponsor-logo img{width:26px;filter:drop-shadow(0 0 10px rgba(247,168,35,0.5));}
-.sponsor-logo small{color:#f7a823;font-size:13px;}
-.sponsor-card h3{margin:22px 0 16px;font-size:28px;font-weight:700;font-style:italic;letter-spacing:0.5px;}
+.sponsor-logo{display:flex;align-items:center;justify-content:center;gap:10px;margin:6px 0 24px;font-size:30px;font-weight:700;font-style:italic;letter-spacing:0.5px;}
+.sponsor-logo img{width:34px;filter:drop-shadow(0 0 10px rgba(247,168,35,0.5));}
+.sponsor-logo small{color:#f7a823;font-size:0.6em;}
 .sponsor-perks{list-style:none;display:flex;flex-direction:column;gap:8px;text-align:left;}
 .sponsor-perks li,.sponsor-perks a{display:flex;align-items:center;gap:10px;padding:12px 14px;border:1px solid rgba(255,255,255,0.08);border-radius:8px;background:rgba(255,255,255,0.02);font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:0.5px;color:#d6d0c4;}
 .sponsor-perks li::before,.sponsor-perks a::before{content:"";flex-shrink:0;width:5px;height:5px;border-radius:50%;background:#f7a823;opacity:0.8;}
@@ -238,8 +237,7 @@ header{display:flex;flex-direction:column;gap:14px;padding:18px 16px;}
 <defs><linearGradient id="drip" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f7a823"/><stop offset="1" stop-color="#9a5a00"/></linearGradient></defs>
 <path fill="url(#drip)" d="M0,0 H340 V20 Q330,20 326,30 Q322,52 314,52 Q306,52 304,32 Q302,22 290,24 Q276,26 272,36 Q268,44 260,40 Q254,36 252,26 Q248,18 236,20 Q222,22 218,38 Q214,62 204,62 Q194,62 192,40 Q190,24 178,24 Q164,24 160,32 Q156,40 148,36 Q142,32 140,24 Q136,18 124,20 Q110,22 106,34 Q102,48 94,48 Q86,48 84,34 Q82,22 70,22 Q56,22 52,30 Q48,38 40,34 Q34,30 30,22 Q24,16 12,18 Q4,20 0,24 Z"/>
 </svg>
-<div class="sponsor-logo"><img src="gem.webp" alt="">CLASH<small>.GG</small></div>
-<h3>CLASH.GG</h3>
+<div class="sponsor-logo"><img src="gem.webp" alt=""><span>CLASH<small>.GG</small></span></div>
 <ul class="sponsor-perks">
 <li>5% Deposit Bonus</li>
 <li>Daily Free Case</li>
