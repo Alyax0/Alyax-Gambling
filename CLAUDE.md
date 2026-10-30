@@ -17,16 +17,16 @@ python -m http.server 8000
 ## Structure
 
 - `index.html` — landing page: hero (title, CTAs, copyable affiliate code, socials), Clash.GG sponsor card (referral link `https://clash.gg/r/ALYAX`), YouTube Shorts cards (thumbnails pulled from `img.youtube.com/vi/<id>/hqdefault.jpg`), embedded Kick player (`player.kick.com/alyaxgg`), social footer.
-- `leaderboards.html` — bi-weekly (quincenal) Clash.GG wager race: hero with stats and affiliate buttons, metallic top-3 podium, race progress bar, and ranking list for #4+. Its look deliberately mirrors the DropsClub race page (drops-club.com/leaderboard/krush) — keep that styling when editing it.
+- `leaderboards.html` — bi-weekly (quincenal) Clash.GG wager race: hero with stats and affiliate buttons, metallic top-3 podium, "Leaderboard ends in" countdown (days/hrs/mins/secs), and ranking list for #4+. Its podium and ranking deliberately mirror the DropsClub race page (drops-club.com/leaderboard/krush) — keep that styling when editing it.
 - Assets: `clash.jpg` (old sponsor banner, currently unused), `favicon.jpg` (index favicon), `gem.webp` (Clash gem icon, also leaderboard favicon).
 
-Each page is fully self-contained: its CSS lives in an inline `<style>` and its JS in an inline `<script>`. There is no shared stylesheet or script, so the header/nav and base styles are **duplicated** in both files — a change to either must be made in both pages. Only `index.html` has the falling-particle canvas; the leaderboard uses a CSS diagonal-stripe background instead. The two files use different formatting (`index.html` minified one-rule-per-line CSS; `leaderboards.html` expanded); match the style of the file being edited.
+Each page is fully self-contained: its CSS lives in an inline `<style>` and its JS in an inline `<script>`. There is no shared stylesheet or script, so the header/nav and base styles are **duplicated** in both files — a change to either must be made in both pages. The falling-particle canvas and the floating-gem decoration in the hero are also duplicated in both pages. The two files use different formatting (`index.html` minified one-rule-per-line CSS; `leaderboards.html` expanded); match the style of the file being edited.
 
 External dependencies (CDN only): Google Fonts Poppins; Font Awesome 6.5.0 (header nav icons on both pages, footer icons on index).
 
 ## Things to know
 
-- All leaderboard content is rendered by JS from the `LEADERBOARD` object at the top of the `leaderboards.html` script (prize pool, period length, `endsAt`, `updatedAt`, affiliate `code`/`referral`, `rewards` per rank, `players`). There is no API; updating standings means editing that object. Players are sorted by `wagered`; podium is rendered in visual order 2nd, 1st, 3rd (`.podium-2/1/3`). Race start, day count and progress are derived from `endsAt` − `periodDays`, rolling forward when the date passes. Player names are still placeholders and `endsAt` is an example date.
+- All leaderboard content is rendered by JS from the `LEADERBOARD` object at the top of the `leaderboards.html` script (prize pool, period length, `endsAt`, `updatedAt`, affiliate `code`/`referral`, `rewards` per rank, `players`). There is no API; updating standings means editing that object. Players are sorted by `wagered`; podium is rendered in visual order 2nd, 1st, 3rd (`.podium-2/1/3`). The countdown targets `endsAt`, rolling forward by `periodDays` when the date passes. Player names are still placeholders and `endsAt` is an example date.
 - `rewards` should sum to `prizePool`. The index page no longer shows prize-pool numbers; the Clash sponsor card's "500 Gems Bi-Weekly Leaderboard" text is hardcoded and must be kept in sync by hand.
 - The Discord footer icon is commented out until there's an invite link.
 - Accent colors: purple `#9146FF` (primary), gold/silver/bronze for podium, Clash gem gold `#f7a823` for the logo, nav icons, hero outline and sponsor card (which also uses the Chakra Petch font).
